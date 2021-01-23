@@ -1,0 +1,145 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/*
+In visual studio, there is a "#include "stdafx.h" 
+It means "standard application framworks" that is a precompiled haeder
+
+표준 헤더 파일들은 모두 '.h' 확장명을 생략
+*/
+
+int main(int argc, char* argv[]) {
+	std::cout << "Hello my friend" << std::endl; //endl == end of line. flush & new line (line break?)
+	
+	//'std' == namespace
+	//namespace == 정의된 객체에 대해 어디 소속인지 지정
+	//'::' == 범위 지정 연산자 | 스코프 설정 연산자(Scope resolution operator)
+	//'cout' == object, instance. iostream 헤더파일의 std 라는 namespace에 정의되어 있는 것
+	//namespace를 일일히 명시하기 귀찮다면 using namespace std; 와 같은 방법도 있다.
+	//클래스 안에 namespace가 속하는 듯
+	
+	//instance!
+	
+	std::string strData = "Test String";
+	
+	std::cout << strData << std::endl;
+	//endl 은 화면에 출력해주는 '함수' ?
+	strData = "New String"; //**
+	const int numData(10);
+	
+	std::cout << strData << " is Different from C\nNum : " << numData <<std::endl;
+	
+	std::cout << "- - - - - - - - - - - - - - - - -"<<std::endl;
+	
+	std::cout << strData << " is Different from C\nNum : " << numData <<std::endl << "Is this possible also?" << std::endl; 
+	////////////////////////Get////////////////////////////////////////////////Get////////////////////////////////////////////////Get////////////////////////
+	int getNumData(0);
+	char charBuff[32]= "0";
+	std::string strBuff;
+	
+	
+	std::cout <<"anyway, give me any num"<<std::endl;
+	
+	std::cin >> getNumData;
+	
+	std::cout <<"("<< getNumData <<")"<<std::endl;
+	
+	/*
+	//cin의 구조를 알아야 할 듯
+	std::cout <<"String" << std::endl;
+	
+	std::cin >> strBuff;
+	
+	std::cout <<"String : "<<"("<< strBuff <<")"<<std::endl;
+
+	//flush?
+	
+	std::cout << "char [32]" << std::endl;
+	
+	std:cin >> charBuff;
+	
+	std::cout <<"char [32] : "<<"("<< charBuff <<")"<<std::endl;
+	*/
+	
+	////////////////////////Memorey////////////////////////////////////////////////Memorey////////////////////////////////////////////////Memorey////////////////////////
+	
+	//auto : 컴파일러가 자동으로 형식을 규정
+	//decltype(expr) : expr과 동일한 자료형 (ex: int x = 10; decltype(x)y = 20;)
+	
+	//new, delete 연산자
+	//-> malloc(), free() 함수 호출 !!메모리 크기를 정하지 않음
+	
+	/*
+	형식 *변수이름 = new 형식;
+	delete 변수이름;
+	
+	형식 *변수이름 = new 형식[요소개수];
+	delete[] 변수이름;
+	*/
+	
+	/*
+	//in C//
+	int *numPtr2;	
+	numPtr2 = malloc(sizeof(int));
+	numPtr2 = 10;
+	
+	free(numPtr2);
+	*/
+	
+	//인스턴스만 동적으로 생성하는 경우
+	int *pData = new int;
+	//초깃값을 기술
+	int *pNewData = new int(10);
+	
+	*pData = 5;
+	
+	std::cout << *pData << std::endl;
+	std::cout << *pNewData << std::endl;
+	
+	delete pData;
+	delete pNewData;
+	
+	int *arr = new int[5];
+	
+	for (int i = 0; i < 5; i++) arr[i] = (i+1)*10;
+	for (int i = 0; i < 5; i++) std::cout << arr[i] <<std::endl;
+		
+		
+	// 배열 형태로 생성한 대상은 반드시 배열 형태로 삭제	
+	delete[] arr;
+	
+	
+	//!! new 연산자는 객체의 생성자를 호출하고, delete 연산자는 객체의 소멸자를 호출 !!
+	
+	/*
+	참조자(Reference form)!!
+	형식 &이름 = 원본;
+	
+	int &rData = a;
+	
+	선언과 동시에 초기화 강요.! 
+	상수에는 참조자 선언 불가.! ex: int &rData = 3;
+	
+	int *pData = &3; 불가
+	int &rData; 불가
+	*/
+	int aData(10);
+	
+	int &ref = aData;
+	
+	ref = 20; //참조자의 값을 변경하면 원본도 변경
+	
+	cout << aData << endl;
+	
+	int *pnData = &aData; //pointer
+	*pnData = 30;
+	
+	cout << aData << endl;
+	
+	
+	
+	
+	return 0;
+}
